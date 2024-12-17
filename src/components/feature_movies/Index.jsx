@@ -16,14 +16,12 @@ const FeatureMovies = () => {
       },
     }).then(async (res) => {
       const data = await res.json();
-      console.log(data);
       const popularMovies = data.results.slice(0, 4);
       setMovies(popularMovies);
       setActiveMovieId(popularMovies[0].id);
     });
   }, []); // Empty dependency array ensures this runs only once when the component mounts
 
-  console.log(movies);
   return (
     <div className="relative text-white">
       {movies
