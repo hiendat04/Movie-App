@@ -1,7 +1,7 @@
-import Header from "./components/Header";
-import FeatureMovies from "./components/feature_movies/Index";
-import MediaList from "./components/media_list/Index";
-import { TOP_RATED_TABS, TRENDING_TABS } from "./libs/Constant";
+import Header from "../components/Header";
+import FeatureMovies from "../components/feature_movies/Index";
+import MediaList from "../components/media_list/Index";
+import { TOP_RATED_TABS, TRENDING_TABS } from "../libs/Constant";
 
 function App() {
   return (
@@ -15,4 +15,3 @@ function App() {
 }
 
 export default App;
- 
