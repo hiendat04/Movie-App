@@ -13,7 +13,7 @@ const MediaList = ({ title, tabs }) => {
         headers: {
           accept: "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmY2IzYWY4MzhmNTgxY2IyMTFlNmZlZWI5YjVhYWRkYyIsIm5iZiI6MTczNDMzOTQ5NC4yMTEsInN1YiI6IjY3NWZlYmE2OTZjZmRkYmYxOWNjZDJjZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.X784ao5bLyFRagD_CJ-o705pamHW1jvk74yYQ4WPNr4",
+            `Bearer ${import .meta.env.VITE_API_TOKEN}`,
         },
       }).then(async (res) => {
         const data = await res.json();
