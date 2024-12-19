@@ -13,7 +13,7 @@ const MediaList = ({ title, tabs }) => {
         headers: {
           accept: "application/json",
           Authorization:
-            `Bearer ${import .meta.env.VITE_API_TOKEN}`,
+          `Bearer ${import .meta.env.VITE_API_TOKEN}`,
         },
       }).then(async (res) => {
         const data = await res.json();

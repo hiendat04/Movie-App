@@ -1,6 +1,6 @@
 import MovieCard from "@components/MovieCard";
 
-const RelatedMediaList = ({ mediaList = [] }) => {
+const RelatedMediaList = ({ mediaList }) => {
   return (
     <div className="mt-6">
       <p className="mb-6 text-[1.4vw] font-bold">More Like This</p>

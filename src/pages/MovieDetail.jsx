@@ -16,8 +16,6 @@ const MovieDetail = () => {
     url: `/movie/${id}?append_to_response=release_dates,credits`,
   });
 
-  console.log({movieInfo, isLoading})
-
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations`, {
       method: "GET",
@@ -38,6 +36,7 @@ const MovieDetail = () => {
   }, [id]);
 
   if (isLoading) return <Loading />;
+  console.log({relatedMovies});
 
   return (
     <div>
