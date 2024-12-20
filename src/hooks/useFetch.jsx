@@ -5,7 +5,7 @@ const DEFAULT_HEADERS = {
   Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
 };
 export default function useFetch({ url = "", method = "GET", headers = {} }) {
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {

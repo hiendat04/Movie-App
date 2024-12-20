@@ -2,6 +2,7 @@ import ImageComponent from "@components/Image";
 import { currencyFormatter } from "@libs/utils";
 
 const MovieInfo = ({ movieInfo }) => {
+  console.log({movieInfo})
   return (
     <div>
       <p className="mb-4 text-[1.4vw] font-bold">Information</p>

@@ -1,26 +1,25 @@
 import PaginateIndicator from "./PaginateIndicator";
 import Movie from "./Movie";
 import { useEffect, useState } from "react";
+import useFetch from "@hooks/useFetch";
+import Loading from "@components/Loading";
 
 const FeatureMovies = () => {
-  const [movies, setMovies] = useState([]);
   const [activeMovieId, setActiveMovieId] = useState(); // We cannot set a default value for the activeMovieId because in the first render, the movies is an empty array
 
-  useEffect(() => {
-    fetch("https://api.themoviedb.org/3/movie/popular", {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization:
-          `Bearer ${import .meta.env.VITE_API_TOKEN}`,
-      },
-    }).then(async (res) => {
-      const data = await res.json();
-      const popularMovies = data.results.slice(0, 4);
-      setMovies(popularMovies);
-      setActiveMovieId(popularMovies[0].id);
+  const { data: popularMovieResponse, isLoading: isPopularMovieLoading } =
+    useFetch({
+      url: "/movie/popular",
     });
-  }, []); // Empty dependency array ensures this runs only once when the component mounts
+
+  const movies = (popularMovieResponse.results || []).slice(0, 4);
+  useEffect(() => {
+    if (movies.length > 0 && !activeMovieId) {
+      setActiveMovieId(movies[0].id); // Set the first movie as active
+    }
+  }, [movies, activeMovieId]); // Depend on movies and activeMovieId
+
+  if (isPopularMovieLoading) return <Loading />;
 
   return (
     <div className="relative text-white">
