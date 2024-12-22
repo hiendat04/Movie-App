@@ -1,18 +1,18 @@
 import ImageComponent from "@components/Image";
-import { currencyFormatter } from "@libs/utils";
 
-const MovieInfo = ({ movieInfo }) => {
+const ShowInfo = ({ showInfo }) => {
+  console.log({ showInfo });
   return (
     <div>
       <p className="mb-4 text-[1.4vw] font-bold">Information</p>
       <div className="mb-4">
         <p className="font-bold">Original Name</p>
-        <p>{movieInfo.original_title}</p>
+        <p>{showInfo.original_name}</p>
       </div>
       <div className="mb-4">
         <p className="font-bold">Original Country</p>
         <p>
-          {(movieInfo.origin_country || []).map((countryCode) => (
+          {(showInfo.origin_country || []).map((countryCode) => (
             <ImageComponent
               className="mr-1 mt-1 w-[1.4vw]"
               key={countryCode}
@@ -23,17 +23,20 @@ const MovieInfo = ({ movieInfo }) => {
       </div>
       <div className="mb-4">
         <p className="font-bold">Status</p>
-        <p>{movieInfo.status}</p>
+        <p>{showInfo.status}</p>
       </div>
       <div className="mb-4">
-        <p className="font-bold">Budget</p>
-        <p>{currencyFormatter(movieInfo.budget) || "Not Available"}</p>
-      </div>
-      <div className="mb-4">
-        <p className="font-bold">Revenue</p>
-        <p>{currencyFormatter(movieInfo.revenue) || "Not Available"}</p>
+        <p className="font-bold">Network</p>
+        {(showInfo.networks || []).map((network) => {
+          return <img
+          className="invert"
+            key={network.id}
+            src={`https://media.themoviedb.org/t/p/h30${network.logo_path}`}
+            alt={`${network.name}`}
+          />;
+        })}
       </div>
     </div>
   );
 };
-export default MovieInfo;
+export default ShowInfo;

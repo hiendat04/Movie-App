@@ -1,28 +1,12 @@
 import MovieCard from "@components/MovieCard";
-import { useEffect, useState } from "react";
 
-const MediaList = ({ title, tabs }) => {
-  const [mediaList, setMediaList] = useState([]);
-  const [activeTabId, setActiveTabId] = useState(tabs[0]?.id);
-
-  useEffect(() => {
-    const url = tabs.find((tab) => tab.id === activeTabId)?.url;
-    if (url) {
-      fetch(url, {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          Authorization:
-          `Bearer ${import .meta.env.VITE_API_TOKEN}`,
-        },
-      }).then(async (res) => {
-        const data = await res.json();
-        const trendingMediaList = data.results.slice(0, 12);
-        setMediaList(trendingMediaList);
-      });
-    }
-  }, [activeTabId, tabs]);
-
+const MediaList = ({
+  title,
+  tabs,
+  currentActiveTabId,
+  setCurrentActiveTabId,
+  mediaList,
+}) => {
   return (
     <div className="bg-black px-8 py-10 text-[1.2vw] text-white">
       <div className="mb-6 flex items-center gap-4">
@@ -33,10 +17,10 @@ const MediaList = ({ title, tabs }) => {
               <li
                 key={tab.id}
                 onClick={() => {
-                  setActiveTabId(tab.id);
+                  setCurrentActiveTabId(tab.id);
                 }}
                 className={`cursor-pointer rounded px-2 py-1 ${
-                  tab.id === activeTabId ? "bg-white text-black" : ""
+                  tab.id === currentActiveTabId ? "bg-white text-black" : ""
                 }`}
               >
                 {tab.name}
@@ -55,7 +39,8 @@ const MediaList = ({ title, tabs }) => {
               releaseDate={media.release_date || media.first_air_date}
               poster={media.poster_path}
               point={media.vote_average}
-              mediaType={media.media_type || activeTabId}
+              mediaType={media.media_type || currentActiveTabId}
+              activeTabId={currentActiveTabId}
             />
           );
         })}

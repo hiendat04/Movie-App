@@ -1,6 +1,6 @@
 import ImageComponent from "@components/Image";
 
-const ActorInfo = ({  name, character, profilePath }) => {
+const ActorInfo = ({ id, name, character, profilePath, episodeCount }) => {
   return (
     <div className="m-4 rounded-lg border border-slate-300 bg-black shadow-sm">
       <ImageComponent
@@ -8,7 +8,7 @@ const ActorInfo = ({  name, character, profilePath }) => {
         src={
           profilePath
             ? `https://media.themoviedb.org/t/p/w276_and_h350_bestv2${profilePath}`
-            : '/actor_no_image.svg'
+            : "/actor_no_image.svg"
         }
         width={276}
         height={350}
@@ -17,7 +17,7 @@ const ActorInfo = ({  name, character, profilePath }) => {
       <div className="p-3">
         <p className="font-bold">{name}</p>
         <p>{character}</p>
-        {/* <p>18</p> */}
+        {episodeCount && <p>{episodeCount} {episodeCount > 1 ? "Episodes" : "Episode"}</p>}
       </div>
     </div>
   );

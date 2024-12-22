@@ -7,18 +7,20 @@ const ImageComponent = ({ src, width, height, className }) => {
 
   useEffect(() => {
     const img = new Image();
-    img.src = src;
-    img.onload = () => {
-      setCurrentSrc(src);
-    };
-
+    if (src) {
+      img.src = src;
+      img.onload = () => {
+        setCurrentSrc(src);
+      };
+      return;
+    }
+    setCurrentSrc( `https://placehold.co/${width}x${height}?text=No Image`);
     // Clean up function
     return () => {
       img.onload = null;
-    }; 
+    };
     //In the first render, this clean up function will be called first, then the callback function of useEffect is called. Or, the element in the dependency array change, the clean up function will be also called first to remove the previous event handler (if there is)
-
-  }, [src]);
+  }, [src, width, height]);
 
   return (
     <img
