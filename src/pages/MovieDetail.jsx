@@ -18,7 +18,7 @@ const MovieDetail = () => {
       url: `/movie/${id}/recommendations`,
     });
 
-  const relatedMovies = (recommendationResponse.results || []).slice(0, 12);
+  const relatedMovies = recommendationResponse.results || []
 
   if (isLoading) return <Loading />;
 

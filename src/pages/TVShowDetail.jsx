@@ -18,7 +18,7 @@ const TVShowDetail = () => {
       url: `/tv/${id}/recommendations`,
     });
 
-  const relatedShow = (recommendationResponse.results || []).slice(0, 12);
+  const relatedShow = recommendationResponse.results;
 
   const certification = (showInfo.content_ratings?.results || []).find(
     (show) => show.iso_3166_1 === "US",

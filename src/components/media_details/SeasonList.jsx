@@ -4,6 +4,7 @@ import { useState } from "react";
 
 const SeasonList = ({ seasons = [] }) => {
   const [isShowMore, setIsShowMore] = useState(false);
+  const [isShowMoreOverview, setIsShowMoreOverview] = useState(false);
   console.log({ seasons });
   return (
     <div className="mt-8 text-[1vw]">
@@ -43,14 +44,39 @@ const SeasonList = ({ seasons = [] }) => {
                 <p>|</p>
                 <p>{season.episode_count} Episodes</p>
               </div>
-              <p>{season.overview}</p>
+              <div>
+                <p>
+                  {isShowMoreOverview
+                    ? season.overview
+                    : season.overview
+                      ? `${season.overview.slice(0, 200)} ...`
+                      : ""}
+                </p>
+                {season.overview?.length > 200 ? (
+                  <button
+                    onClick={() => setIsShowMoreOverview(!isShowMoreOverview)}
+                    className="mt-2 font-bold"
+                  >
+                    {isShowMoreOverview ? "Show Less" : "Show More"}
+                  </button>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
           </div>
         );
       })}
-      <button onClick={() => setIsShowMore(!isShowMore)} className="font-bold">
-        {isShowMore ? "Show More" : "Show Less"}
-      </button>
+      {seasons.length > 4 ? (
+        <button
+          onClick={() => setIsShowMore(!isShowMore)}
+          className="font-bold"
+        >
+          {isShowMore ? "Show More" : "Show Less"}
+        </button>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
