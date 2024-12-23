@@ -26,14 +26,19 @@ const Banner = ({
         width={1903}
         height={1070}
         className="absolute inset-0 brightness-[.2]"
-        src={`https://image.tmdb.org/t/p/original${backdropPath}`}
+        src={
+          backdropPath && `https://image.tmdb.org/t/p/original${backdropPath}`
+        }
       />
       <div className="relative mx-auto flex max-w-screen-xl gap-6 px-8 py-10 lg:gap-8">
         <div className="flex-1">
           <ImageComponent
             width={300}
             height={450}
-            src={`https://media.themoviedb.org/t/p/w300_and_h450_bestv2${posterPath}`}
+            src={
+              posterPath &&
+              `https://media.themoviedb.org/t/p/w300_and_h450_bestv2${posterPath}`
+            }
           />
         </div>
         <div className="flex-[2] text-[1.2vw]">

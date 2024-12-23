@@ -16,7 +16,10 @@ const ShowInfo = ({ showInfo }) => {
             <ImageComponent
               className="mr-1 mt-1 w-[1.4vw]"
               key={countryCode}
-              src={`https://flagcdn.com/48x36/${countryCode.toLowerCase()}.png`}
+              src={
+                countryCode.toLowerCase() &&
+                `https://flagcdn.com/48x36/${countryCode.toLowerCase()}.png`
+              }
             />
           ))}
         </p>
@@ -28,12 +31,14 @@ const ShowInfo = ({ showInfo }) => {
       <div className="mb-4">
         <p className="font-bold">Network</p>
         {(showInfo.networks || []).map((network) => {
-          return <img
-          className="invert"
-            key={network.id}
-            src={`https://media.themoviedb.org/t/p/h30${network.logo_path}`}
-            alt={`${network.name}`}
-          />;
+          return (
+            <img
+              className="invert"
+              key={network.id}
+              src={`https://media.themoviedb.org/t/p/h30${network.logo_path}`}
+              alt={`${network.name}`}
+            />
+          );
         })}
       </div>
     </div>

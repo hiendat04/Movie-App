@@ -17,7 +17,10 @@ const SeasonList = ({ seasons = [] }) => {
             <ImageComponent
               width={130}
               height={195}
-              src={`https://media.themoviedb.org/t/p/w300${season.poster_path}`}
+              src={
+                season.poster_path &&
+                `https://media.themoviedb.org/t/p/w300${season.poster_path}`
+              }
               className={"w-1/4 rounded-lg"}
             />
             <div className="ml-5 space-y-2">
@@ -45,9 +48,9 @@ const SeasonList = ({ seasons = [] }) => {
           </div>
         );
       })}
-      <button
-      onClick={() => setIsShowMore(!isShowMore)} 
-      className="font-bold">{isShowMore ? 'Show More' : 'Show Less'}</button>
+      <button onClick={() => setIsShowMore(!isShowMore)} className="font-bold">
+        {isShowMore ? "Show More" : "Show Less"}
+      </button>
     </div>
   );
 };

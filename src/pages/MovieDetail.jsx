@@ -21,7 +21,6 @@ const MovieDetail = () => {
   const relatedMovies = (recommendationResponse.results || []).slice(0, 12);
 
   if (isLoading) return <Loading />;
-  if (isRelatedMediaListLoading) return <Loading />;
 
   const certification = (
     (movieInfo.release_dates?.results || []).find(
@@ -52,13 +51,18 @@ const MovieDetail = () => {
         trailerVideoKey={
           (movieInfo.videos?.results || []).find(
             (video) => video.type === "Trailer",
-          )?.key}
+          )?.key
+        }
       />
       <div className="bg-black text-[1.2vw] text-white">
-        <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">
+        <div className="container">
           <div className="flex-[2]">
             <ActorList actors={movieInfo.credits?.cast || []} />
-            <RelatedMediaList mediaList={relatedMovies} />
+            <RelatedMediaList
+              mediaList={relatedMovies}
+              title="More Like This"
+              isLoading={isRelatedMediaListLoading}
+            />
           </div>
           <div className="flex-1">
             <MovieInfo movieInfo={movieInfo} />

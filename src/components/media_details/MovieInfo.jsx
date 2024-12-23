@@ -16,7 +16,10 @@ const MovieInfo = ({ movieInfo }) => {
             <ImageComponent
               className="mr-1 mt-1 w-[1.4vw]"
               key={countryCode}
-              src={`https://flagcdn.com/48x36/${countryCode.toLowerCase()}.png`}
+              src={
+                countryCode.toLowerCase() &&
+                `https://flagcdn.com/48x36/${countryCode.toLowerCase()}.png`
+              }
             />
           ))}
         </p>

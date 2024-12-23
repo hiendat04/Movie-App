@@ -20,11 +20,11 @@ const ImageComponent = ({ src, width, height, className }) => {
       img.onload = null;
     };
     //In the first render, this clean up function will be called first, then the callback function of useEffect is called. Or, the element in the dependency array change, the clean up function will be also called first to remove the previous event handler (if there is)
-  }, [src, width, height]);
+  }, [src, width, height ]);
 
   return (
     <img
-      className={currentSrc === src ? className : `${className} blur-md`}
+      className={currentSrc === src || src ? className : `${className} blur-md`}
       src={currentSrc}
       width={width}
       height={height}
